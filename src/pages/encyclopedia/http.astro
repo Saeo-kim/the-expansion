@@ -1,0 +1,175 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout
+  title="HTTP"
+  description="Understand HTTP, the protocol used for communication on the web."
+>
+  <article class="article container">
+    <div class="eyebrow">INTERNET & NETWORKS / PROTOCOLS</div>
+
+    <h1 class="display-title">HTTP</h1>
+
+    <p class="lead">
+      The protocol that makes communication on the web possible.
+    </p>
+
+    <div class="metadata">
+      <span>CONCEPT</span>
+      <span>FOUNDATIONAL TECHNOLOGY</span>
+      <span>01 / INTERNET</span>
+    </div>
+
+    <section>
+      <h2>01. Definition</h2>
+      <p>
+        HTTP stands for Hypertext Transfer Protocol.
+        It is an application-layer protocol used for communication
+        between clients and servers.
+      </p>
+    </section>
+
+    <section>
+      <h2>02. Why does it exist?</h2>
+      <p>
+        A browser needs a standardized way to request resources
+        from a server. HTTP defines how those requests and responses
+        are structured and exchanged.
+      </p>
+    </section>
+
+    <section>
+      <h2>03. How does it work?</h2>
+      <div class="code-example">
+        <span class="eyebrow">REQUEST EXAMPLE</span>
+        <pre><code>GET /index.html HTTP/1.1
+Host: example.com
+Accept: text/html</code></pre>
+      </div>
+
+      <p>
+        The client sends a request. The server processes it and
+        returns a response containing a status code, headers
+        and potentially a message body.
+      </p>
+    </section>
+
+    <section>
+      <h2>04. Related concepts</h2>
+      <div class="related">
+        <a href="/encyclopedia/client-server/">Client & Server ↗</a>
+        <a href="/encyclopedia/json/">JSON ↗</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>05. References</h2>
+      <ul>
+        <li>
+          <a href="https://www.rfc-editor.org/rfc/rfc9110"
+             target="_blank" rel="noreferrer">
+            RFC 9110 — HTTP Semantics
+          </a>
+        </li>
+        <li>
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP"
+             target="_blank" rel="noreferrer">
+            MDN — HTTP
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <a class="back" href="/encyclopedia/">← Back to Encyclopedia</a>
+  </article>
+</MainLayout>
+
+<style>
+  .article {
+    max-width: 850px;
+    padding-top: 90px;
+    padding-bottom: 120px;
+  }
+
+  .article h1 {
+    margin: 25px 0 10px;
+    font-size: clamp(64px, 12vw, 120px);
+  }
+
+  .lead {
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .metadata {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 35px 0 65px;
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+  }
+
+  .article section {
+    margin: 55px 0;
+  }
+
+  .article h2 {
+    margin-bottom: 18px;
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 500;
+  }
+
+  .article section p,
+  .article li {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  .code-example {
+    margin: 25px 0;
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+  }
+
+  pre {
+    overflow-x: auto;
+    color: var(--lime);
+    line-height: 1.8;
+    font-size: 12px;
+  }
+
+  .related {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .related a {
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 12px;
+  }
+
+  .article li a {
+    color: var(--purple);
+  }
+
+  .back {
+    display: inline-block;
+    margin-top: 40px;
+    color: var(--lime);
+    font-size: 12px;
+  }
+</style>
