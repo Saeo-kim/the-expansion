@@ -1,0 +1,146 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout
+  title="Client & Server"
+  description="Understand the relationship between clients and servers."
+>
+  <article class="article container">
+    <div class="eyebrow">COMPUTING / NETWORK ARCHITECTURE</div>
+
+    <h1 class="display-title">Client & Server</h1>
+
+    <p class="lead">
+      Two roles that make networked applications possible.
+    </p>
+
+    <div class="metadata">
+      <span>ARCHITECTURE</span>
+      <span>FOUNDATIONAL CONCEPT</span>
+    </div>
+
+    <section>
+      <h2>01. Definition</h2>
+      <p>
+        A client is a program or device that requests a service.
+        A server is a program or system that provides a service
+        in response to requests.
+      </p>
+    </section>
+
+    <section>
+      <h2>02. Real-world example</h2>
+      <p>
+        When you open a website, your browser acts as a client.
+        It sends a request to a web server, which processes
+        the request and returns the page or data.
+      </p>
+    </section>
+
+    <section>
+      <h2>03. Request and response</h2>
+      <div class="code-example">
+        <pre><code>CLIENT
+  |
+  |  Request
+  v
+SERVER
+  |
+  |  Response
+  v
+CLIENT</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>04. Related concepts</h2>
+      <div class="related">
+        <a href="/encyclopedia/http/">HTTP ↗</a>
+        <a href="/encyclopedia/json/">JSON ↗</a>
+      </div>
+    </section>
+
+    <a class="back" href="/encyclopedia/">← Back to Encyclopedia</a>
+  </article>
+</MainLayout>
+
+<style>
+  .article {
+    max-width: 850px;
+    padding: 90px 0 120px;
+  }
+
+  .article h1 {
+    margin: 25px 0 10px;
+    font-size: clamp(54px, 10vw, 100px);
+  }
+
+  .lead {
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+  .metadata {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 35px 0 65px;
+    padding: 18px 0;
+    border-block: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+  }
+
+  .article section {
+    margin: 55px 0;
+  }
+
+  .article h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 500;
+  }
+
+  .article section p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  .code-example {
+    padding: 22px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+  }
+
+  pre {
+    overflow-x: auto;
+    color: var(--lime);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .related {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .related a {
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 12px;
+  }
+
+  .back {
+    display: inline-block;
+    margin-top: 40px;
+    color: var(--lime);
+    font-size: 12px;
+  }
+</style>

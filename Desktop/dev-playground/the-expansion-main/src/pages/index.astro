@@ -1,0 +1,691 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const spaces = [
+  {
+    number: '01',
+    name: 'Encyclopedia',
+    korean: '기술 백과사전',
+    description: 'Explore the concepts, systems and technologies that shape our world.',
+    href: '/encyclopedia/',
+    symbol: '◈'
+  },
+  {
+    number: '02',
+    name: 'Learning Paths',
+    korean: '학습 경로',
+    description: 'Follow structured paths from fundamental ideas to advanced technologies.',
+    href: '/learning-paths/',
+    symbol: '↗'
+  },
+  {
+    number: '03',
+    name: 'Knowledge Map',
+    korean: '지식 관계 지도',
+    description: 'Discover how technologies, concepts and systems connect.',
+    href: '/knowledge-map/',
+    symbol: '⌘'
+  },
+  {
+    number: '04',
+    name: 'Interactive Lab',
+    korean: '코드 실험실',
+    description: 'Experiment with code and observe how digital systems work.',
+    href: '/lab/',
+    symbol: '⌁'
+  },
+  {
+    number: '05',
+    name: 'Research Archive',
+    korean: '연구 자료실',
+    description: 'Explore the history, references and research behind technology.',
+    href: '/research/',
+    symbol: '◎'
+  },
+  {
+    number: '06',
+    name: 'Publishing Studio',
+    korean: '출판 작업실',
+    description: 'Transform knowledge and research into useful publications.',
+    href: '/publishing/',
+    symbol: '✳'
+  }
+];
+
+const categories = [
+  { name: 'Computing', detail: '컴퓨터의 구조와 작동 원리', count: '01' },
+  { name: 'Internet & Networks', detail: '인터넷과 네트워크 시스템', count: '02' },
+  { name: 'Programming', detail: '프로그래밍 언어와 개발', count: '03' },
+  { name: 'Data & Databases', detail: '데이터와 데이터베이스', count: '04' },
+  { name: 'Security', detail: '정보 보안과 인증 기술', count: '05' },
+  { name: 'Infrastructure', detail: '서버와 클라우드 인프라', count: '06' }
+];
+
+const featured = [
+  {
+    category: 'INTERNET',
+    title: 'HTTP',
+    description: 'The protocol that makes communication on the web possible.',
+    href: '/encyclopedia/http/'
+  },
+  {
+    category: 'DATA FORMAT',
+    title: 'JSON',
+    description: 'A lightweight format for exchanging structured data.',
+    href: '/encyclopedia/json/'
+  },
+  {
+    category: 'WEB TECHNOLOGY',
+    title: 'Client & Server',
+    description: 'The two sides of a conversation across a network.',
+    href: '/encyclopedia/client-server/'
+  }
+];
+---
+
+<MainLayout
+  title="Explore Technology"
+  description="Explore computing, programming, networks and the systems behind our world."
+>
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">AN EXPLORATION OF TECHNOLOGY</div>
+
+        <h1 class="display-title">
+          Understand<br />
+          what makes<br />
+          <span>the world work.</span>
+        </h1>
+
+        <p class="hero-description">
+          A growing knowledge platform exploring technology,
+          computing, systems and the ideas that connect them.
+        </p>
+
+        <div class="hero-actions">
+          <a href="/encyclopedia/" class="primary-button">
+            Explore knowledge <span>↗</span>
+          </a>
+
+          <a href="/knowledge-map/" class="secondary-button">
+            View knowledge map
+          </a>
+        </div>
+
+        <div class="hero-note">
+          <span class="status-dot"></span>
+          A continuously expanding knowledge system
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="orbit orbit-three"></div>
+        <div class="orbit-core">
+          <span>EXPAND</span>
+          <strong>∞</strong>
+          <small>KNOWLEDGE</small>
+        </div>
+        <span class="orbit-label label-one">COMPUTING</span>
+        <span class="orbit-label label-two">SYSTEMS</span>
+        <span class="orbit-label label-three">IDEAS</span>
+        <span class="orbit-label label-four">TECHNOLOGY</span>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
+      <span>01 / KNOWLEDGE</span>
+      <span>EXPLORE · UNDERSTAND · CONNECT</span>
+      <span>SCROLL TO DISCOVER ↓</span>
+    </div>
+  </section>
+
+  <section class="intro-section">
+    <div class="container intro-grid">
+      <div>
+        <span class="eyebrow">WHY THE EXPANSION</span>
+        <h2 class="display-title">
+          Knowledge is not<br />
+          a collection of terms.
+        </h2>
+      </div>
+
+      <div class="intro-text">
+        <p>
+          Technology is built from interconnected ideas.
+          To understand one system, we often need to understand
+          the systems around it.
+        </p>
+        <p>
+          THE EXPANSION brings these ideas together —
+          from the foundations of computing to the technologies
+          shaping the future.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section spaces-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">EXPLORE THE PLATFORM</span>
+          <h2>Six ways to explore.</h2>
+        </div>
+        <p>
+          Different ways to learn, investigate, experiment
+          and develop knowledge.
+        </p>
+      </div>
+
+      <div class="spaces-grid">
+        {spaces.map((space) => (
+          <a href={space.href} class="space-card card">
+            <div class="space-card-top">
+              <span>{space.number} / SPACE</span>
+              <span class="space-symbol">{space.symbol}</span>
+            </div>
+
+            <div class="space-card-bottom">
+              <span class="space-korean">{space.korean}</span>
+              <h3>{space.name}</h3>
+              <p>{space.description}</p>
+              <span class="space-arrow">Explore ↗</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section categories-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">KNOWLEDGE INDEX</span>
+          <h2>Explore by subject.</h2>
+        </div>
+        <a class="arrow-link" href="/encyclopedia/">
+          All knowledge ↗
+        </a>
+      </div>
+
+      <div class="category-list">
+        {categories.map((category) => (
+          <a href="/encyclopedia/" class="category-row">
+            <span class="category-number">{category.count}</span>
+            <strong>{category.name}</strong>
+            <span class="category-detail">{category.detail}</span>
+            <span class="category-arrow">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section featured-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">START EXPLORING</span>
+          <h2>Ideas worth understanding.</h2>
+        </div>
+        <p>
+          Start with a concept. Follow its connections.
+          Discover the larger system.
+        </p>
+      </div>
+
+      <div class="featured-grid">
+        {featured.map((item) => (
+          <a href={item.href} class="featured-card card">
+            <span class="eyebrow">{item.category}</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <span class="arrow-link">Read concept ↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="closing-section">
+    <div class="container closing-inner">
+      <span class="eyebrow">THE EXPANSION PROJECT</span>
+      <h2 class="display-title">
+        There is always<br />
+        more to understand.
+      </h2>
+      <p>
+        Explore the knowledge. Discover the connections.
+        Expand the way you see technology.
+      </p>
+      <a href="/encyclopedia/" class="primary-button">
+        Begin exploring <span>↗</span>
+      </a>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .hero {
+    min-height: 650px;
+    padding: 100px 0 28px;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    width: min(1180px, calc(100% - 64px));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .hero h1 {
+    margin: 30px 0;
+    font-size: clamp(58px, 8vw, 106px);
+    line-height: 0.98;
+  }
+
+  .hero h1 span {
+    color: var(--purple);
+  }
+
+  .hero-description {
+    max-width: 470px;
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 15px;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .primary-button,
+  .secondary-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 22px;
+    padding: 15px 19px;
+    border-radius: 999px;
+    font-size: 12px;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .primary-button {
+    background: var(--lime);
+    color: #171811;
+    font-weight: 700;
+  }
+
+  .primary-button:hover,
+  .secondary-button:hover {
+    transform: translateY(-3px);
+  }
+
+  .secondary-button {
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .hero-note {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 65px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+  }
+
+  .status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--lime);
+    box-shadow: 0 0 12px var(--lime);
+  }
+
+  .hero-art {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 460px;
+  }
+
+  .orbit {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    border-radius: 50%;
+  }
+
+  .orbit-one {
+    transform: rotate(25deg) scaleX(0.65);
+  }
+
+  .orbit-two {
+    transform: rotate(-35deg) scaleX(0.65);
+  }
+
+  .orbit-three {
+    width: 245px;
+    height: 245px;
+    border-color: rgba(211, 243, 107, 0.3);
+  }
+
+  .orbit-core {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 155px;
+    height: 155px;
+    border: 1px solid rgba(211, 243, 107, 0.45);
+    border-radius: 50%;
+    background: radial-gradient(circle, #383344, #191918 70%);
+    box-shadow: 0 0 80px rgba(167, 139, 250, 0.15);
+  }
+
+  .orbit-core span,
+  .orbit-core small {
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+  }
+
+  .orbit-core strong {
+    color: var(--lime);
+    font-size: 48px;
+    font-weight: 400;
+  }
+
+  .orbit-label {
+    position: absolute;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+
+  .label-one { top: 12%; left: 13%; }
+  .label-two { top: 22%; right: 2%; color: var(--lime); }
+  .label-three { bottom: 16%; left: 10%; }
+  .label-four { bottom: 20%; right: 0; color: var(--purple); }
+
+  .hero-bottom {
+    width: min(1180px, calc(100% - 64px));
+    margin: 75px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+
+  .intro-section {
+    padding: 100px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: #151514;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 80px;
+  }
+
+  .intro-grid h2 {
+    margin: 22px 0 0;
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1.1;
+  }
+
+  .intro-text {
+    align-self: end;
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 14px;
+  }
+
+  .spaces-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .space-card {
+    min-height: 290px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .space-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+  }
+
+  .space-symbol {
+    color: var(--purple);
+    font-size: 27px;
+  }
+
+  .space-korean {
+    color: var(--lime);
+    font-size: 11px;
+  }
+
+  .space-card h3 {
+    margin: 10px 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 500;
+  }
+
+  .space-card p,
+  .featured-card p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .space-arrow {
+    display: inline-block;
+    margin-top: 14px;
+    color: var(--lime);
+    font-size: 11px;
+  }
+
+  .category-list {
+    border-top: 1px solid var(--border);
+  }
+
+  .category-row {
+    display: grid;
+    grid-template-columns: 60px 1.2fr 1fr 30px;
+    align-items: center;
+    gap: 20px;
+    min-height: 75px;
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.2s, background 0.2s;
+  }
+
+  .category-row:hover {
+    padding: 0 12px;
+    background: var(--surface);
+  }
+
+  .category-number {
+    color: var(--purple);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+  }
+
+  .category-row strong {
+    font-size: 14px;
+  }
+
+  .category-detail {
+    color: var(--muted);
+    font-size: 12px;
+  }
+
+  .category-arrow {
+    color: var(--lime);
+    text-align: right;
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .featured-card {
+    min-height: 235px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .featured-card h3 {
+    margin: 28px 0 4px;
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 500;
+  }
+
+  .featured-card p {
+    flex: 1;
+  }
+
+  .closing-section {
+    padding: 110px 0;
+    border-top: 1px solid var(--border);
+    background:
+      radial-gradient(ellipse at 80% 40%, rgba(167, 139, 250, 0.12), transparent 40%),
+      #151514;
+  }
+
+  .closing-inner {
+    text-align: center;
+  }
+
+  .closing-inner h2 {
+    margin: 25px 0;
+    font-size: clamp(48px, 7vw, 82px);
+    line-height: 1.05;
+  }
+
+  .closing-inner p {
+    max-width: 460px;
+    margin: 0 auto 28px;
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 13px;
+  }
+
+  @media (max-width: 850px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-art {
+      min-height: 350px;
+    }
+
+    .intro-grid {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+
+    .spaces-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      padding-top: 65px;
+    }
+
+    .hero-grid,
+    .hero-bottom {
+      width: calc(100% - 36px);
+    }
+
+    .hero h1 {
+      font-size: clamp(52px, 15vw, 76px);
+    }
+
+    .hero-art {
+      min-height: 300px;
+    }
+
+    .orbit {
+      width: 270px;
+      height: 270px;
+    }
+
+    .orbit-three {
+      width: 200px;
+      height: 200px;
+    }
+
+    .orbit-core {
+      width: 125px;
+      height: 125px;
+    }
+
+    .hero-bottom {
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-bottom span:nth-child(2) {
+      display: none;
+    }
+
+    .spaces-grid,
+    .featured-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .space-card {
+      min-height: 240px;
+    }
+
+    .category-row {
+      grid-template-columns: 30px 1fr 20px;
+      gap: 12px;
+    }
+
+    .category-detail {
+      display: none;
+    }
+  }
+</style>

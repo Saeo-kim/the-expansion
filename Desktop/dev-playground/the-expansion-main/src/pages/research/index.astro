@@ -1,0 +1,35 @@
+---
+import SectionPage from '../../components/SectionPage.astro';
+
+const items = [
+  {
+    title: 'Technology History',
+    description: '컴퓨팅과 인터넷 기술의 발전 과정.',
+    label: 'HISTORY'
+  },
+  {
+    title: 'Technical References',
+    description: '공식 문서, 기술 표준과 참고 자료.',
+    label: 'REFERENCES'
+  },
+  {
+    title: 'Research Notes',
+    description: '개념을 분석하고 실험한 연구 기록.',
+    label: 'NOTES'
+  },
+  {
+    title: 'Technology Trends',
+    description: '새롭게 등장하는 기술과 산업의 변화.',
+    label: 'TRENDS'
+  }
+];
+---
+
+<SectionPage
+  number="05"
+  eyebrow="RESEARCH ARCHIVE"
+  title="Research Archive"
+  korean="연구 자료실"
+  description="A structured archive of technical references, historical context, research notes and the evolution of ideas."
+  items={items}
+/>

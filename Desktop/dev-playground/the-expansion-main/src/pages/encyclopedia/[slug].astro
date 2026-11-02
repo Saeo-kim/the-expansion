@@ -1,0 +1,102 @@
+
+---
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('encyclopedia');
+
+  return entries.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{entry.data.title} | THE EXPANSION</title>
+    <meta name="description" content={entry.data.description} />
+  </head>
+
+  <body>
+    <header>
+      <a href="/">THE EXPANSION</a>
+      <a href="/encyclopedia/">Encyclopedia</a>
+    </header>
+
+    <main>
+      <p>{entry.data.category}</p>
+      <h1>{entry.data.title}</h1>
+      <p>{entry.data.description}</p>
+
+      <article>
+        <Content />
+      </article>
+    </main>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 40px 24px;
+        background: #111116;
+        color: #eeeeef;
+        font-family: Arial, sans-serif;
+        line-height: 1.8;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 60px;
+      }
+
+      a {
+        color: #b7a3ff;
+        text-decoration: none;
+      }
+
+      main {
+        max-width: 850px;
+        margin: 0 auto;
+      }
+
+      article {
+        margin-top: 48px;
+      }
+
+      article h2 {
+        margin-top: 48px;
+        color: #c3b1ff;
+      }
+
+      article pre {
+        overflow-x: auto;
+        padding: 20px;
+        background: #20202a;
+        border-radius: 10px;
+      }
+
+      article code {
+        font-family: Consolas, monospace;
+      }
+
+      article table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      article th,
+      article td {
+        padding: 12px;
+        border-bottom: 1px solid #393944;
+        text-align: left;
+      }
+    </style>
+  </body>
+</html>

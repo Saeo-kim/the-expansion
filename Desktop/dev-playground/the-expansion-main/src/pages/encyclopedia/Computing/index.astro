@@ -1,0 +1,35 @@
+---
+import SectionPage from '../../../components/SectionPage.astro';
+
+const items = [
+  {
+    title: 'History of Computing',
+    description: '컴퓨터가 탄생하고 발전한 역사.',
+    label: 'HISTORY'
+  },
+  {
+    title: 'Computer Architecture',
+    description: 'CPU, 메모리, 저장장치와 컴퓨터 구조.',
+    label: 'HARDWARE'
+  },
+  {
+    title: 'Operating Systems',
+    description: '운영체제의 역할과 프로세스 관리.',
+    label: 'SOFTWARE'
+  },
+  {
+    title: 'Binary & Number Systems',
+    description: '2진법, 10진법, 데이터 표현의 기초.',
+    label: 'FUNDAMENTALS'
+  }
+];
+---
+
+<SectionPage
+  number="01-A"
+  eyebrow="COMPUTING"
+  title="Computing"
+  korean="컴퓨터 과학과 컴퓨팅"
+  description="Explore the history, architecture and fundamental principles of computing."
+  items={items}
+/>
