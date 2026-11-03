@@ -29,11 +29,27 @@ const nodes = [
   { id: 'database', name: 'Database', region: 'data', x: 930, y: 390, desc: 'An organized collection of data.' },
   { id: 'model', name: 'Data Model', region: 'data', x: 1080, y: 405, desc: 'A representation of how data is structured and related.' },
 
+    // Security Zone
   { id: 'authentication', name: 'Authentication', region: 'security', x: 270, y: 485, desc: 'The process of verifying an identity.' },
   { id: 'authorization', name: 'Authorization', region: 'security', x: 430, y: 485, desc: 'The process of determining what an identity can access.' },
   { id: 'jwt', name: 'JWT', region: 'security', x: 340, y: 635, desc: 'A compact token format for representing claims between parties.' },
   { id: 'oauth2', name: 'OAuth 2.0', region: 'security', x: 485, y: 620, desc: 'A framework for delegated authorization.' },
   { id: 'token', name: 'Token', region: 'security', x: 520, y: 550, desc: 'A data structure or value that represents information, identity, or authorization.' },
+
+  { id: 'spring-security', name: 'Spring Security', region: 'security', x: 250, y: 570, desc: 'A Spring framework for authentication, authorization, and application security.' },
+  { id: 'authorization-code', name: 'Authorization Code', region: 'security', x: 540, y: 650, desc: 'A temporary code exchanged for an access token in the OAuth authorization code flow.' },
+  { id: 'client-id', name: 'Client ID', region: 'security', x: 580, y: 490, desc: 'An identifier assigned to an OAuth client application.' },
+  { id: 'redirect-uri', name: 'Redirect URI', region: 'security', x: 650, y: 570, desc: 'The destination URI to which the authorization server redirects the user.' },
+  { id: 'bearer-token', name: 'Bearer Token', region: 'security', x: 410, y: 710, desc: 'An access token presented by its holder to access a protected resource.' },
+  { id: 'cookie', name: 'Cookie', region: 'security', x: 170, y: 660, desc: 'Small pieces of data stored by the browser.' },
+  { id: 'set-cookie', name: 'Set-Cookie', region: 'security', x: 100, y: 730, desc: 'An HTTP response header used by a server to instruct the browser to store a cookie.' },
+  { id: 'http-401', name: '401 Unauthorized', region: 'security', x: 90, y: 550, desc: 'An HTTP status code indicating that valid authentication credentials are missing or invalid.' },
+  { id: 'author', name: 'Author', region: 'security', x: 750, y: 680, desc: 'The person who created a resource or content.' },
+
+  { id: 'resource-owner', name: 'Resource Owner', region: 'security', x: 690, y: 430, desc: 'The entity that owns the protected resource and can grant access.' },
+  { id: 'resource-server', name: 'Resource Server', region: 'security', x: 800, y: 500, desc: 'The server that hosts protected resources and accepts access tokens.' },
+  { id: 'authorization-server', name: 'Authorization Server', region: 'security', x: 800, y: 600, desc: 'The server that authenticates the resource owner and issues access tokens.' },
+  { id: 'client-application', name: 'Client Application', region: 'security', x: 690, y: 730, desc: 'The application requesting access to protected resources.' },
 
   { id: 'server', name: 'Server', region: 'infrastructure', x: 720, y: 500, desc: 'A system that provides resources or services to clients.' },
   { id: 'linux', name: 'Linux', region: 'infrastructure', x: 850, y: 490, desc: 'An open-source family of operating systems.' },
@@ -70,10 +86,39 @@ const connections = [
   ['sql', 'database'],
   ['database', 'model'],
 
-  // Security Zone
+   // Security Zone
   ['authentication', 'authorization'],
   ['authentication', 'jwt'],
   ['authorization', 'oauth2'],
+  ['spring-security', 'authentication'],
+  ['spring-security', 'authorization'],
+  ['spring-security', 'oauth2'],
+
+  // OAuth 2.0
+  ['oauth2', 'authorization-code'],
+  ['oauth2', 'client-id'],
+  ['oauth2', 'redirect-uri'],
+  ['oauth2', 'resource-owner'],
+  ['oauth2', 'resource-server'],
+  ['oauth2', 'authorization-server'],
+  ['oauth2', 'client-application'],
+  ['oauth2', 'bearer-token'],
+
+  // Token & Cookie
+  ['jwt', 'token'],
+  ['jwt', 'bearer-token'],
+  ['cookie', 'set-cookie'],
+  ['cookie', 'authentication'],
+  ['http-401', 'authentication'],
+
+  // HTTP & Authorization
+  ['bearer-token', 'resource-server'],
+  ['authorization-code', 'authorization-server'],
+  ['client-id', 'client-application'],
+  ['redirect-uri', 'client-application'],
+
+  // Application concepts
+  ['author', 'database'],
 
   // JWT relationships
   ['jwt', 'json'],
@@ -112,6 +157,48 @@ export default function KnowledgeUniverse() {
       .map(([a, b]) => nodes.find((node) => node.id === (a === selected ? b : a)))
       .filter(Boolean);
   }, [selected]);
+
+   const matchedNodes = useMemo(() => {
+    const keyword = query.trim().toLowerCase();
+
+    if (!keyword) return [];
+
+    return nodes.filter((node) => {
+      const region = regions.find(
+        (item) => item.id === node.region
+      );
+
+      const searchableText = [
+        node.name,
+        node.desc,
+        region?.name,
+        ...(node.keywords || []),
+      ].join(' ').toLowerCase();
+
+      return searchableText.includes(keyword);
+    });
+  }, [query]);
+
+    const matchedNodes = useMemo(() => {
+    const keyword = query.trim().toLowerCase();
+
+    if (!keyword) return [];
+
+    return nodes.filter((node) => {
+      const region = regions.find(
+        (item) => item.id === node.region
+      );
+
+      const searchableText = [
+        node.name,
+        node.desc,
+        region?.name,
+        ...(node.keywords || []),
+      ].join(' ').toLowerCase();
+
+      return searchableText.includes(keyword);
+    });
+  }, [query]);
 
   function focusNode(node) {
     setSelected(node.id);
