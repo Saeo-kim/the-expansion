@@ -158,27 +158,6 @@ export default function KnowledgeUniverse() {
       .filter(Boolean);
   }, [selected]);
 
-   const matchedNodes = useMemo(() => {
-    const keyword = query.trim().toLowerCase();
-
-    if (!keyword) return [];
-
-    return nodes.filter((node) => {
-      const region = regions.find(
-        (item) => item.id === node.region
-      );
-
-      const searchableText = [
-        node.name,
-        node.desc,
-        region?.name,
-        ...(node.keywords || []),
-      ].join(' ').toLowerCase();
-
-      return searchableText.includes(keyword);
-    });
-  }, [query]);
-
     const matchedNodes = useMemo(() => {
     const keyword = query.trim().toLowerCase();
 
