@@ -21,8 +21,31 @@ const {
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#111110" />
-    <title>{title} — THE EXPANSION</title>
-    <meta name="google-site-verification" content="SMX3puj55xmTtAK85BnJEVyWLrRLZyAeenbFetRjiGw" />
+
+    <title>{title} | THE EXPANSION</title>
+
+    <link
+      rel="canonical"
+      href={new URL(Astro.url.pathname, Astro.site).toString()}
+    />
+
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="THE EXPANSION" />
+    <meta property="og:title" content={`${title} | THE EXPANSION`} />
+    <meta property="og:description" content={description} />
+    <meta
+      property="og:url"
+      content={new URL(Astro.url.pathname, Astro.site).toString()}
+    />
+
+    <meta name="twitter:card" content="summary" />
+
+    <meta
+      name="google-site-verification"
+      content="SMX3puj55xmTtAK85BnJEVyWLrRLZyAeenbFetRjiGw"
+    />
   </head>
 
   <body>
