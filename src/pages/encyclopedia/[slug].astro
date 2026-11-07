@@ -5,10 +5,12 @@ import { getCollection, render } from 'astro:content';
 export async function getStaticPaths() {
   const entries = await getCollection('encyclopedia');
 
-  return entries.map((entry) => ({
-    params: { slug: entry.data.slug },
-    props: { entry },
-  }));
+  return entries
+    .filter((entry) => entry.data.slug !== 'http')
+    .map((entry) => ({
+      params: { slug: entry.data.slug },
+      props: { entry },
+    }));
 }
 
 const { entry } = Astro.props;
@@ -22,6 +24,19 @@ const { Content } = await render(entry);
     <meta name="viewport" content="width=device-width" />
     <title>{entry.data.title} | THE EXPANSION</title>
     <meta name="description" content={entry.data.description} />
+    <link
+      rel="canonical"
+      href={`https://the-expansion.gringang.workers.dev/encyclopedia/${entry.data.slug}/`}
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="THE EXPANSION" />
+    <meta property="og:title" content={`${entry.data.title} | THE EXPANSION`} />
+    <meta property="og:description" content={entry.data.description} />
+    <meta
+      property="og:url"
+      content={`https://the-expansion.gringang.workers.dev/encyclopedia/${entry.data.slug}/`}
+    />
+    <meta name="robots" content="index, follow" />
   </head>
 
   <body>
