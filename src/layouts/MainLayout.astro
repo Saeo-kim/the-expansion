@@ -6,11 +6,13 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  ogType?: string;
 }
 
 const {
   title = 'THE EXPANSION',
-  description = 'An exploration of technology, computing and ideas.'
+  description = 'An exploration of technology, computing and ideas.',
+  ogType = 'website'
 } = Astro.props;
 ---
 
@@ -31,7 +33,7 @@ const {
 
     <meta name="robots" content="index, follow" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="THE EXPANSION" />
     <meta property="og:title" content={`${title} | THE EXPANSION`} />
     <meta property="og:description" content={description} />

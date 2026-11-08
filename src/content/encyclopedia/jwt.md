@@ -7,7 +7,7 @@ slug: "jwt"
 status: "published"
 ---
 
-# JSON Web Token (JWT)
+
 
 ## 1. Definition
 
@@ -170,17 +170,66 @@ JWT is connected to several important web technologies.
 
 | Concept | Relationship to JWT |
 |---|---|
-| HTTP | Transports requests containing tokens |
-| Authentication | Establishes the identity of a user |
-| Authorization | Determines what an authenticated user can access |
+| [HTTP](/encyclopedia/http/) | Transports requests containing tokens |
+| [Authentication](/encyclopedia/authentication/) | Establishes the identity of a user |
+| [Authorization](/encyclopedia/authorization/) | Determines what an authenticated user can access |
 | Cookie | Can be used as a mechanism to store and send tokens |
 | Session | An alternative approach to maintaining authentication state |
-| OAuth 2.0 | An authorization framework that can use JWT-formatted tokens |
+| [OAuth 2.0](/encyclopedia/oauth2/) | An authorization framework that can use JWT-formatted tokens |
 | OpenID Connect | An identity layer built on top of OAuth 2.0 |
-| Access Token | A credential used to access protected resources |
+| [Access Token](/encyclopedia/token/) | A credential used to access protected resources |
 | Refresh Token | A credential used to obtain new access tokens |
 
-## 9. Standards and References
+## 9. Advantages and Limitations
+
+**Advantages**
+
+- Resource servers can validate a signed token locally, without a database lookup on each request.
+- Claims travel with the token, which suits services that do not share session storage.
+- Standard libraries exist for most languages.
+
+**Limitations**
+
+- A signed JWT cannot be revoked before `exp` without additional server-side state, such as a denylist.
+- Claims can become out of date while the token remains valid, for example after a role change.
+- The payload is readable, and tokens are larger than short opaque identifiers.
+- A JWT is usually a bearer [token](/encyclopedia/token/), so anyone who steals it can use it until it expires.
+
+Choosing JWT is a trade-off. For a single server-rendered application, a conventional server-side session is often simpler and easier to revoke.
+
+## 10. Common Errors and Troubleshooting
+
+| Symptom | Likely Cause | Solution |
+|---|---|---|
+| `TokenExpiredError` or `exp` failure | The access token has expired | Refresh it, or authenticate again |
+| Invalid signature | Wrong key, wrong algorithm, or an altered token | Compare the issuer's key with the verifier's configuration |
+| Works on one server only | Keys differ between instances | Distribute the same key, or use the issuer's JWKS endpoint |
+| `nbf` or `iat` failures right after login | Clock skew | Sync clocks with NTP and allow a small leeway |
+| `aud` or `iss` validation fails | Token intended for another service | Request a token for the correct audience |
+| Malformed token | Missing `Bearer` prefix handling, or extra quotes | Log the token's shape, never its full value |
+| Accepts `alg: none` or confused algorithms | Verifier trusts the token's header | Configure an explicit allowlist of algorithms |
+
+A correct verification call states the expected algorithm, issuer, and audience. For example, with the Node.js `jsonwebtoken` library:
+
+```javascript
+import jwt from 'jsonwebtoken';
+
+const claims = jwt.verify(token, publicKey, {
+  algorithms: ['RS256'],
+  issuer: 'https://auth.example.com/',
+  audience: 'expansion-api',
+});
+```
+
+## 11. Recommended Learning Path
+
+1. Understand [JSON](/encyclopedia/json/) and [HTTP](/encyclopedia/http/) headers.
+2. Learn [Authentication](/encyclopedia/authentication/) and [Authorization](/encyclopedia/authorization/).
+3. Compare token types on the [Token](/encyclopedia/token/) page.
+4. Decode a token by hand, then verify its signature in code.
+5. See how JWTs are issued in [OAuth 2.0](/encyclopedia/oauth2/).
+
+## 12. Standards and References
 
 - RFC 7519 — JSON Web Token (JWT)
 - RFC 7515 — JSON Web Signature (JWS)

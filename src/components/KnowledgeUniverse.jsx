@@ -9,7 +9,7 @@ const regions = [
   { id: 'infrastructure', name: 'INFRASTRUCTURE', sub: 'Cloud & Deployment', x: 835, y: 600, color: '#f3c879' },
 ];
 
-const nodes = [
+export const nodes = [
   { id: 'computer', name: 'Computer', region: 'systems', x: 160, y: 155, desc: 'The physical and logical foundations of computing.' },
   { id: 'hardware', name: 'Hardware', region: 'systems', x: 270, y: 95, desc: 'The physical components of a computer system.' },
   { id: 'software', name: 'Software', region: 'systems', x: 340, y: 205, desc: 'Programs and instructions executed by computers.' },
@@ -41,7 +41,7 @@ const nodes = [
   { id: 'cloud', name: 'Cloud', region: 'infrastructure', x: 760, y: 680, desc: 'On-demand computing resources delivered over a network.' },
 ];
 
-const connections = [
+export const connections = [
   // Computer Science
   ['computer', 'hardware'],
   ['computer', 'software'],
@@ -345,6 +345,7 @@ export default function KnowledgeUniverse() {
                 </button>
               ))}
             </div>
+            <a className="panel-read" href={`/encyclopedia/${selectedNode.id}/`}>READ IN ENCYCLOPEDIA ↗</a>
             <div className="panel-footer">KNOWLEDGE UNIVERSE / THE EXPANSION</div>
           </aside>
         )}
@@ -419,6 +420,8 @@ export default function KnowledgeUniverse() {
         .related-list button { color: #ded8f4; background: #ffffff0b; border: 1px solid #ffffff20; border-radius: 3px; padding: 7px 9px; font-size: 10px; cursor: pointer; }
         .related-list button:hover { border-color: #a995e9; }
         .related-list button span { color: #a995e9; margin-left: 7px; }
+        .panel-read { display: block; margin-top: 16px; padding: 11px 13px; background: #9b83e8; color: #151321; font-size: 9px; letter-spacing: .1em; text-align: center; text-decoration: none; border-radius: 3px; }
+        .panel-read:hover { background: #b7a0ff; }
         .panel-footer { color: #66647b; font-size: 8px; letter-spacing: .12em; margin-top: 22px; }
         .universe-footer { padding: 18px 4vw; display: flex; justify-content: space-between; color: #69677d; font-size: 8px; letter-spacing: .13em; }
         @media (max-width: 700px) {

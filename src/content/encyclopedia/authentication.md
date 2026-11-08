@@ -6,7 +6,7 @@ slug: "authentication"
 status: "published"
 ---
 
-# Authentication
+
 
 ## 1. Definition
 
@@ -140,14 +140,59 @@ A common token-based process:
 - Expire or revoke credentials when necessary.
 - Avoid exposing sensitive authentication information in logs.
 
-## 11. Related Technologies
+## 11. Advantages and Limitations of Common Approaches
+
+| Approach | Advantages | Limitations |
+|---|---|---|
+| Passwords | Universally understood, inexpensive | Phishing, reuse, and credential stuffing |
+| OTP apps | Adds a possession factor | Codes can still be phished in real time |
+| Passkeys / WebAuthn | Bound to the site, resistant to phishing | Account recovery needs planning |
+| Biometrics | Convenient, usually verified on-device | Cannot be changed if compromised |
+| Server-side sessions | Easy to revoke immediately | Requires shared session storage |
+| Stateless [tokens](/encyclopedia/token/) | Can be validated without a lookup | Hard to revoke before expiry |
+
+## 12. Common Errors and Troubleshooting
+
+| Symptom or Mistake | Likely Cause | Solution |
+|---|---|---|
+| Valid users cannot log in after a migration | Password hash format or parameters changed | Support the old format and rehash on next login |
+| "User not found" versus "Wrong password" | Messages reveal which accounts exist | Return one generic failure message |
+| Login succeeds but the next request is anonymous | Session cookie was not stored or sent | Check `Secure`, `SameSite`, and domain attributes |
+| Repeated 401 responses | Expired token or session | Refresh, or send the user to log in |
+| Same session ID before and after login | Session fixation risk | Issue a new session ID on login |
+| Thousands of failed logins | Credential stuffing | Rate-limit, add MFA, and monitor |
+
+Password storage should use a dedicated slow hash. A minimal example with Argon2 in Python:
+
+```python
+from argon2 import PasswordHasher
+from argon2.exceptions import VerifyMismatchError
+
+hasher = PasswordHasher()
+stored = hasher.hash("correct horse battery staple")
+
+try:
+    hasher.verify(stored, submitted_password)
+except VerifyMismatchError:
+    reject_login()
+```
+
+## 13. Recommended Learning Path
+
+1. Learn how [HTTP](/encyclopedia/http/) requests carry cookies and headers.
+2. Implement password login with secure hashing.
+3. Compare sessions with [Token](/encyclopedia/token/)-based designs and [JWT](/encyclopedia/jwt/).
+4. Add MFA, and explore passkeys.
+5. Continue with [Authorization](/encyclopedia/authorization/) and [OAuth 2.0](/encyclopedia/oauth2/).
+
+## 14. Related Technologies
 
 - [Authorization](/encyclopedia/authorization/)
 - [OAuth 2.0](/encyclopedia/oauth2/)
 - [JSON Web Token (JWT)](/encyclopedia/jwt/)
 - [HTTP](/encyclopedia/http/)
 
-## 12. References
+## 15. References
 
 - [NIST Digital Identity Guidelines](https://pages.nist.gov/800-63-4/)
 - [OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)
