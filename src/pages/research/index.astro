@@ -1,0 +1,34 @@
+---
+import SectionPage from '../../components/SectionPage.astro';
+
+const items = [
+  {
+    title: 'Technology History',
+    description: 'The evolution of computing and internet technologies.',
+    label: 'HISTORY'
+  },
+  {
+    title: 'Technical References',
+    description: 'Official documentation, technical standards, and reference materials.',
+    label: 'REFERENCES'
+  },
+  {
+    title: 'Research Notes',
+    description: 'Research records documenting concept analysis and experiments.',
+    label: 'NOTES'
+  },
+  {
+    title: 'Technology Trends',
+    description: 'Emerging technologies and changes across the tech industry.',
+    label: 'TRENDS'
+  }
+];
+---
+
+<SectionPage
+  number="05"
+  eyebrow="RESEARCH ARCHIVE"
+  title="Research Archive"
+  description="A structured archive of technical references, historical context, research notes and the evolution of ideas."
+  items={items}
+/>

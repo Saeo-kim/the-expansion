@@ -1,0 +1,31 @@
+
+---
+import SectionPage from '../../components/SectionPage.astro';
+
+const items = [
+  {
+    title: 'Authentication',
+    description: 'Identity verification and authentication methods.',
+    href: '/encyclopedia/authentication/'
+  },
+  {
+    title: 'OAuth 2.0',
+    description: 'Authorization framework, grant types and access delegation.',
+    href: '/encyclopedia/oauth2/'
+  },
+  {
+    title: 'JSON Web Token (JWT)',
+    description: 'Token structure, claims, authentication and security.',
+    href: '/encyclopedia/jwt/'
+  }
+];
+---
+
+<SectionPage
+  number="05"
+  eyebrow="WEB SECURITY"
+  title="Security"
+  korean="보안"
+  description="Explore authentication, authorization, cryptography and security protocols."
+  items={items}
+/>

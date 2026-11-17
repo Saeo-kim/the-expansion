@@ -1,0 +1,150 @@
+---
+const navigation = [
+  { label: 'Encyclopedia', href: '/encyclopedia/' },
+  { label: 'Learning Paths', href: '/learning-paths/' },
+  { label: 'Knowledge Map', href: '/knowledge-map/' },
+  { label: 'Interactive Lab', href: '/lab/' },
+  { label: 'Research', href: '/research/' },
+  { label: 'Publishing', href: '/publishing/' }
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="/">
+      <span class="brand-symbol">E.</span>
+      <span class="brand-name">THE EXPANSION</span>
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {navigation.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'nav-link',
+            { active: currentPath.startsWith(item.href) }
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <a class="header-search" href="/encyclopedia/">
+      <span>Explore</span>
+      <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    border-bottom: 1px solid var(--border);
+    background: rgba(17, 17, 16, 0.92);
+    backdrop-filter: blur(16px);
+  }
+
+  .header-inner {
+    width: min(1380px, calc(100% - 64px));
+    min-height: 76px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .brand-symbol {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--purple);
+    color: #17131f;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .brand-name {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(12px, 2vw, 28px);
+  }
+
+  .nav-link {
+    color: var(--muted);
+    font-size: 11px;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--lime);
+  }
+
+  .header-search {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .header-search:hover {
+    border-color: var(--purple);
+  }
+
+  @media (max-width: 1050px) {
+    .header-inner {
+      flex-wrap: wrap;
+      padding: 15px 0;
+    }
+
+    .desktop-nav {
+      order: 3;
+      width: 100%;
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding: 8px 0 2px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .header-inner {
+      width: calc(100% - 36px);
+    }
+
+    .brand-name {
+      font-size: 10px;
+    }
+
+    .nav-link {
+      font-size: 10px;
+    }
+  }
+</style>

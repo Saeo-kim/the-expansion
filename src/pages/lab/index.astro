@@ -1,0 +1,34 @@
+---
+import SectionPage from '../../components/SectionPage.astro';
+
+const items = [
+  {
+    title: 'HTML & CSS',
+    description: 'Experiment with the structure and visual design of web documents.',
+    label: 'FRONTEND'
+  },
+  {
+    title: 'JavaScript',
+    description: 'Explore variables, functions, objects, and browser behavior.',
+    label: 'PROGRAMMING'
+  },
+  {
+    title: 'HTTP Playground',
+    description: 'Understand how HTTP requests, responses, and status codes work.',
+    label: 'NETWORK'
+  },
+  {
+    title: 'JSON Explorer',
+    description: 'Experiment with JSON data structures and transformation processes.',
+    label: 'DATA'
+  }
+];
+---
+
+<SectionPage
+  number="04"
+  eyebrow="INTERACTIVE LAB"
+  title="Interactive Lab"
+  description="Move beyond reading. Write code, run experiments and observe how technology behaves."
+  items={items}
+/>

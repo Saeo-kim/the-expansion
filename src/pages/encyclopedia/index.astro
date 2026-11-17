@@ -1,0 +1,44 @@
+---
+import SectionPage from '../../components/SectionPage.astro';
+
+const items = [
+  {
+    title: 'Computing',
+    description: 'The history, architecture, hardware, and operating systems of computers.',
+    href: '/encyclopedia/computing/'
+  },
+  {
+    title: 'Internet & Networks',
+    description: 'The internet, computer networks, and communication protocols.',
+    href: '/encyclopedia/http/'
+  },
+  {
+    title: 'Programming',
+    description: 'Programming languages, code, and software development.',
+    href: '#'
+  },
+  {
+    title: 'Data & Databases',
+    description: 'Data structures, SQL, and database systems.',
+    href: '/encyclopedia/json/'
+  },
+  {
+    title: 'Security',
+    description: 'Authentication, encryption, and security systems.',
+    href: '/encyclopedia/security/'
+  },
+  {
+    title: 'Infrastructure',
+    description: 'Servers, cloud computing, deployment, and infrastructure.',
+    href: '#'
+  }
+];
+---
+
+<SectionPage
+  number="01"
+  eyebrow="KNOWLEDGE ENCYCLOPEDIA"
+  title="Encyclopedia"
+  description="Explore the foundations, concepts and systems of modern technology. From the history of computing to the architecture of the internet."
+  items={items}
+/>

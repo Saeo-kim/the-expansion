@@ -1,0 +1,44 @@
+---
+import SectionPage from '../../components/SectionPage.astro';
+
+const items = [
+  {
+    title: 'Foundations of Computing',
+    description: 'A learning path starting with the history of computers and their fundamental operating principles.',
+    label: 'BEGINNER'
+  },
+  {
+    title: 'Web Development',
+    description: 'From HTML, CSS, and JavaScript to building web applications.',
+    label: 'DEVELOPMENT'
+  },
+  {
+    title: 'Backend Engineering',
+    description: 'Servers, HTTP, APIs, databases, and backend architecture.',
+    label: 'ENGINEERING'
+  },
+  {
+    title: 'Database Systems',
+    description: 'Relational databases, SQL, and data modeling.',
+    label: 'DATA'
+  },
+  {
+    title: 'Computer Networks',
+    description: 'Network layers and the fundamental principles of internet communication.',
+    label: 'NETWORKS'
+  },
+  {
+    title: 'Security Fundamentals',
+    description: 'Authentication, authorization, encryption, and web security.',
+    label: 'SECURITY'
+  }
+];
+---
+
+<SectionPage
+  number="02"
+  eyebrow="LEARNING PATHS"
+  title="Learning Paths"
+  description="Follow structured learning journeys. Understand what to learn, why it matters and how each concept builds on the next."
+  items={items}
+/>

@@ -1,0 +1,34 @@
+---
+import SectionPage from '../../components/SectionPage.astro';
+
+const items = [
+  {
+    title: 'Books',
+    description: 'Transform researched knowledge into structured books and e-books.',
+    label: 'PUBLICATION'
+  },
+  {
+    title: 'Courses',
+    description: 'Organize technical concepts into structured learning programs and courses.',
+    label: 'EDUCATION'
+  },
+  {
+    title: 'Research Reports',
+    description: 'Document technology analysis and research findings in structured reports.',
+    label: 'REPORTS'
+  },
+  {
+    title: 'Articles',
+    description: 'Publish individual technology topics as standalone content.',
+    label: 'WRITING'
+  }
+];
+---
+
+<SectionPage
+  number="06"
+  eyebrow="PUBLISHING STUDIO"
+  title="Publishing Studio"
+  description="Turn research and knowledge into publications, educational materials and useful resources."
+  items={items}
+/>

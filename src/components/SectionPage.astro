@@ -1,0 +1,188 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+interface Props {
+  number: string;
+  eyebrow: string;
+  title: string;
+  korean: string;
+  description: string;
+  status?: string;
+  items?: {
+    title: string;
+    description: string;
+    href?: string;
+    label?: string;
+  }[];
+}
+
+const {
+  number,
+  eyebrow,
+  title,
+  korean,
+  description,
+  status = 'A SPACE FOR EXPLORATION',
+  items = []
+} = Astro.props;
+---
+
+<MainLayout title={title} description={description}>
+  <section class="section-page">
+    <div class="container">
+      <div class="section-top">
+        <span class="eyebrow">{number} / {eyebrow}</span>
+        <span class="pill">{status}</span>
+      </div>
+
+      <div class="page-hero">
+        <span class="korean">{korean}</span>
+        <h1 class="display-title">{title}</h1>
+        <p>{description}</p>
+      </div>
+
+      <div class="page-divider">
+        <span>EXPLORE THIS SPACE</span>
+        <span>THE EXPANSION / {number}</span>
+      </div>
+
+      <div class="item-grid">
+        {items.map((item, index) => (
+          <a href={item.href || '#'} class="item-card card">
+            <div class="item-top">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <span>{item.label || 'EXPLORE ↗'}</span>
+            </div>
+            <div>
+              <h2>{item.title}</h2>
+              <p>{item.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {items.length === 0 && (
+        <div class="empty-state">
+          <span class="eyebrow">UNDER CONSTRUCTION</span>
+          <h2 class="display-title">This space is expanding.</h2>
+          <p>New knowledge and tools will be introduced here.</p>
+        </div>
+      )}
+
+      <a href="/" class="back-link">← Back to home</a>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .section-page {
+    min-height: 75vh;
+    padding: 85px 0 110px;
+  }
+
+  .section-top,
+  .page-divider,
+  .item-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .page-hero {
+    padding: 100px 0 85px;
+    max-width: 850px;
+  }
+
+  .korean {
+    color: var(--lime);
+    font-size: 13px;
+  }
+
+  .page-hero h1 {
+    margin: 20px 0;
+    font-size: clamp(54px, 9vw, 100px);
+    line-height: 1;
+  }
+
+  .page-hero p {
+    max-width: 600px;
+    color: var(--muted);
+    line-height: 1.9;
+    font-size: 15px;
+  }
+
+  .page-divider {
+    padding: 18px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
+
+  .item-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+  }
+
+  .item-card {
+    min-height: 220px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .item-top {
+    color: var(--lime);
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+  }
+
+  .item-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 500;
+  }
+
+  .item-card p,
+  .empty-state p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .empty-state {
+    padding: 80px 20px;
+    text-align: center;
+  }
+
+  .empty-state h2 {
+    font-size: 42px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-top: 60px;
+    color: var(--lime);
+    font-size: 12px;
+  }
+
+  @media (max-width: 760px) {
+    .section-page {
+      padding-top: 55px;
+    }
+
+    .page-hero {
+      padding: 70px 0;
+    }
+
+    .item-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
